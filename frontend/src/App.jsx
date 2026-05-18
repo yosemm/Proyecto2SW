@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { FormularioItem } from './components/FormularioItem';
+import { ListaItems } from './components/ListaItems'
 
 function App() {
   const [items, setItems] = useState(
     () => JSON.parse(localStorage.getItem('items') || '[]')
   );
+
   useEffect(() => {
     localStorage.setItem('items', JSON.stringify(items));
   }, [items]);
@@ -22,8 +24,19 @@ function App() {
       atributos: {},
       activo: true
     };
+
     setItems(prevItems => [nuevoJuego, ...prevItems]);
   }
+
+  const archivarJuego = (id) => {
+    const itemsActuales = items.map(item => {
+      if (item.id === id) {
+        return { ...item, activo: false, fechaActividad: new Date().toISOString() };
+      }
+      return item;
+    });
+    setItems(itemsActuales);
+  };
 
   return (
     <>
@@ -31,6 +44,8 @@ function App() {
         <h1>Backlog de Videojuegos</h1>
         <span>Total de juegos: {items.length}</span>
         <FormularioItem agregarJuego={agregarJuego} />
+
+        <ListaItems items={items} archivar={archivarJuego} />
       </div>
     </>
   )
