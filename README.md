@@ -13,3 +13,15 @@ Como resumen, he creado las siguientes partes:
 Algunos de los juegos que realmente he jugado. Control (2019) es de mis favoritos y este año sale la secuela. 
 <img width="2560" height="1528" alt="image" src="https://github.com/user-attachments/assets/44237e33-85b6-45c3-a0d6-72f572434b99" />
 <img width="2560" height="1528" alt="image" src="https://github.com/user-attachments/assets/c32d3bfb-c97a-47b9-af1e-b9c8d027022e" />
+
+## Pruebas Postman
+1. GET
+<img width="1227" height="502" alt="image" src="https://github.com/user-attachments/assets/3865b4b5-e693-448a-9ef5-50401fd74fa3" />
+2. POST
+<img width="1224" height="624" alt="image" src="https://github.com/user-attachments/assets/cf526fe7-ad23-4b7b-8c78-1d0361777de6" />
+3. PUT
+<img width="1219" height="633" alt="image" src="https://github.com/user-attachments/assets/64c994e0-f108-45a9-9d17-74c2780b52be" />
+4. DELETE
+<img width="1223" height="495" alt="image" src="https://github.com/user-attachments/assets/543111eb-7815-48bd-a20f-38319b1855dd" />
+6. POST (Registro)
+<img width="1225" height="539" alt="image" src="https://github.com/user-attachments/assets/f1fbb659-027b-4ab4-98cf-c0e85a706144" />
