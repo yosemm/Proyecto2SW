@@ -1,4 +1,5 @@
 export function ItemCard({ juego, archivar }) {
+
     const estadoColores = {
         pendiente: 'grey',
         jugando: 'lightblue',
@@ -9,6 +10,7 @@ export function ItemCard({ juego, archivar }) {
         <div>
             <h3>{juego.nombre}</h3>
             <div>
+                <p><strong>Fecha en la que se registró:</strong> {juego.fechaRegistro}</p>
                 <p><strong>Categoría:</strong> {juego.categoriaId}</p>
                 <p><strong>Estado:</strong> {juego.estado}</p>
                 <p><strong>Puntuación:</strong> {juego.puntuacion !== null ? `${juego.puntuacion}/10` : 'Sin puntuar'}</p>
