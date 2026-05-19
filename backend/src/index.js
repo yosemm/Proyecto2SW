@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import conectarDatabase from './db/database.js';
+import router from './routes/items.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,5 +23,7 @@ async function startServer() {
         console.error('Error al iniciar el servidor:', error);
     }
 }
+
+app.use('/api/items', router);
 
 startServer();
