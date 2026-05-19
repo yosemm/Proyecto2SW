@@ -2,8 +2,12 @@
 En esta rama del repositorio se encuentra mi progreso para la fase 1 del proyecto. 
 
 Como resumen, he creado las siguientes partes:
-1. Frontend: Utiliza React y el proyecto fue creado con Vite. Tiene persistencia de datos por medio de LocalStorage. 
-2. Backend: Utiliza SQLite y Express. Se implementaron 5 endpoints en el API. Y se creó la tabla para los items (juegos). 
+1. Frontend: Utiliza React y el proyecto fue creado con Vite. Tiene persistencia de datos por medio de LocalStorage.
+    - Componentes: FormularioItem, ListaItems, ItemCard
+    - Campos:  id, nombre, categoriaId, estado, puntuacion, fechaRegistro, fechaActividad, notas, atributos (JSON), activo
+2. Backend: Utiliza SQLite y Express. Se implementaron 5 endpoints en el API. Creé las tablas para los items (juegos) y para sus registros.
+    - Endpoints: GET, POST, PUT, DELETE y POST /api/items/:id/registro
+    
 ## Mis primeros Items
 
 Algunos de los juegos que realmente he jugado. Control (2019) es de mis favoritos y este año sale la secuela. 
