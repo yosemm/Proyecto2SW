@@ -40,7 +40,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className="contenido">
         <h1>Backlog de Videojuegos</h1>
         <span>Total de juegos: {items.length}</span>
         <FormularioItem agregarJuego={agregarJuego} />
