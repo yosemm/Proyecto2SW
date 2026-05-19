@@ -38,6 +38,19 @@ function App() {
     setItems(itemsActuales);
   };
 
+  const cambiarEstado = (id) => {
+    const estados = ['Pendiente', 'Jugando', 'Completado'];
+    const itemsActuales = items.map(item => {
+      if (item.id === id) {
+        const estadoActual = item.estado;
+        const siguiente = (estados.indexOf(estadoActual) + 1) % estados.length;
+        return { ...item, estado: estados[siguiente], fechaActividad: new Date().toISOString() };
+      }
+      return item;
+    });
+    setItems(itemsActuales);
+  }
+
   return (
     <>
       <div className="contenido">
@@ -45,7 +58,7 @@ function App() {
         <span>Total de juegos: {items.length}</span>
         <FormularioItem agregarJuego={agregarJuego} />
 
-        <ListaItems items={items} archivar={archivarJuego} />
+        <ListaItems items={items} archivar={archivarJuego} cambiarEstado={cambiarEstado} />
       </div>
     </>
   )

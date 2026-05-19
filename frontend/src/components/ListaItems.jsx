@@ -1,6 +1,6 @@
 import { ItemCard } from './ItemCard';
 
-export function ListaItems({ items, archivar }) {
+export function ListaItems({ items, archivar, cambiarEstado }) {
     const juegosListados = items.filter(item => item.activo === true);
 
     if (juegosListados.length === 0) {
@@ -19,6 +19,7 @@ export function ListaItems({ items, archivar }) {
                     key={juego.id}
                     juego={juego}
                     archivar={archivar}
+                    cambiarEstado={cambiarEstado}
                 />
             ))}
         </div>

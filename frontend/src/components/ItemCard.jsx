@@ -1,4 +1,4 @@
-export function ItemCard({ juego, archivar }) {
+export function ItemCard({ juego, archivar, cambiarEstado }) {
 
     const estadoColores = {
         pendiente: 'grey',
@@ -18,6 +18,11 @@ export function ItemCard({ juego, archivar }) {
             </div>
 
             <div>
+                <button
+                    onClick={() => cambiarEstado(juego.id)}
+                >
+                    Cambiar Estado
+                </button>
                 <button
                     onClick={() => archivar(juego.id)}
                 >
