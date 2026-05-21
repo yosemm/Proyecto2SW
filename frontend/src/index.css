@@ -1,25 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 :root {
-    --color-primary-dark: #042A2B;
+    --color-bg: #CDEDF6;
+    --color-text: #042A2B;
     --color-primary: #5EB1BF;
-    --color-secondary: #CDEDF6;
+    --color-card-bg: #f0f0f0;
     --color-accent: #EF7B45;
     --color-accent-dark: #D84727;
-    --color-neutral-light: #f0f0f0;
 
     --font-family-base: 'Inter', sans-serif;
     --font-size-base: 16px;
     --font-weight-regular: 400;
     --font-weight-medium: 500;
     --font-weight-bold: 700;
+
+    --categoria-rpg: #7C5CFC;
+    --categoria-accion: #E5484D;
+    --categoria-estrategia: #3B82F6;
+    --categoria-terror: #8B5CF6;
+    --categoria-deportes: #10B981;
+}
+
+body[data-theme='oscuro'] {
+    --color-bg: #042A2B;
+    --color-text: #CDEDF6;
+    --color-primary: #5EB1BF;
+    --color-card-bg: #0b3d3e;
+    --color-accent: #EF7B45;
+    --color-accent-dark: #ff935c;
+
+    --categoria-rpg: #9B7CFF;
+    --categoria-accion: #FF6B6B;
+    --categoria-estrategia: #60A5FA;
+    --categoria-terror: #A78BFA;
+    --categoria-deportes: #34D399;
 }
 
 body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
     font-family: var(--font-family-base);
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-regular);
-    color: var(--color-primary-dark);
     margin: 0;
     display: flex;
     justify-content: center;
