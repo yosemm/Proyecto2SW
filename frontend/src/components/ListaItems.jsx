@@ -1,9 +1,14 @@
 import { StorageContext } from '../context/StorageProvider';
 import { ItemCard } from './ItemCard';
-import { useContext } from 'react';
+import { useContext, useRef, useEffect } from 'react';
 
 export function ListaItems() {
     const { itemsDatos } = useContext(StorageContext);
+    const ultimoJuegoRef = useRef(null);
+
+    useEffect(() => {
+        ultimoJuegoRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }, [itemsDatos.length]);
 
     if (itemsDatos.length === 0) {
         return (

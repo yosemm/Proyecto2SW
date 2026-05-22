@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { StorageContext } from './context/StorageProvider';
 import { ThemeContext } from './context/ThemeContext';
 import { FormularioItem } from './components/FormularioItem';
@@ -7,6 +7,19 @@ import { ListaItems } from './components/ListaItems';
 function App() {
   const { modo, cambiarModo } = useContext(StorageContext);
   const { tema, cambiarTema } = useContext(ThemeContext);
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      const enInput = e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT';
+
+      if (e.key.toLowerCase() === 't' && !enInput) {
+        cambiarTema();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [cambiarTema]);
 
   return (
     <div>

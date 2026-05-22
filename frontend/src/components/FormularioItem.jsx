@@ -5,6 +5,18 @@ import { CATEGORIAS } from '../utils/categorias';
 export function FormularioItem() {
     const inputNombreRef = useRef(null);
 
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if ((e.ctrlKey || e.altKey) && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                inputNombreRef.current?.focus();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
+
     const { guardarItem } = useContext(StorageContext);
 
     const [datos, setDatos] = useState({
@@ -22,18 +34,6 @@ export function FormularioItem() {
             [name]: value
         });
     };
-
-    useEffect(() => {
-        const handleKeyDown = (e) => {
-            if (e.ctrlKey && e.key.toLowerCase() === 'n') {
-                e.preventDefault();
-                inputNombreRef.current?.focus(); // 
-            }
-        };
-
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, []);
 
     const submitInput = (e) => {
         e.preventDefault();
@@ -74,6 +74,7 @@ export function FormularioItem() {
                     <input
                         type="text"
                         name="nombre"
+                        ref={inputNombreRef}
                         value={datos.nombre}
                         onChange={valorInput}
                         required

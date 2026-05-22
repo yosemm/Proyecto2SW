@@ -1,28 +1,32 @@
-# Fase 1 - Proyecto Final de Sistemas Web
-En esta rama del repositorio se encuentra mi progreso para la fase 1 del proyecto. 
+# Fase 2 - Proyecto Final de Sistemas Web
 
-Como resumen, he creado las siguientes partes:
-1. Frontend: Utiliza React y el proyecto fue creado con Vite. Tiene persistencia de datos por medio de LocalStorage.
-    - Componentes: FormularioItem, ListaItems, ItemCard
-    - Campos:  id, nombre, categoriaId, estado, puntuacion, fechaRegistro, fechaActividad, notas, atributos (JSON), activo
-2. Backend: Utiliza SQLite y Express. Se implementaron 5 endpoints en el API. Creé las tablas para los items (juegos) y para sus registros.
-    - Endpoints: GET, POST, PUT, DELETE y POST /api/items/:id/registro
-    
-## Mis primeros Items
+En esta entrega se encuentra mi progreso para la Fase 2 del proyecto.
 
-Algunos de los juegos que realmente he jugado. Control (2019) es de mis favoritos y este año sale la secuela. 
-<img width="2560" height="1528" alt="image" src="https://github.com/user-attachments/assets/0d9a0ce4-1492-44ba-a855-c0e779066d0e" />
-<img width="2560" height="1528" alt="image" src="https://github.com/user-attachments/assets/e33a961a-b10e-4ace-9b6e-a7369bbf1006" />
+## Resumen de lo implementado:
 
+* StorageContext, context para manejar el almacenamiento tanto localmente como en la base de datos.
+* ThemeContext, permite cambiar entre tema claro y oscuro. Cambia un atributo en el body y guarda la preferencia en localStorage.
+* Implementé el hook useRef para que al guardar un videojuego, la pagina enfoca al input del nombre.
+* La lista de juegos desplaza la pantalla hacia el elemento más reciente.
+* Ctrl + N o Alt + N: Enfoca el campo de texto del nombre del juego.
+* T: Cambia entre el tema claro y oscuro.
+* Hay 5 categorías de los juegos: RPG, Acción, Estrategia, Terror y Deportes. 
+Cada una cuenta con su propio id, nombre, emoji y color.
 
-## Pruebas Postman
-1. GET
-<img width="1227" height="502" alt="image" src="https://github.com/user-attachments/assets/3865b4b5-e693-448a-9ef5-50401fd74fa3" />
-2. POST
-<img width="1224" height="624" alt="image" src="https://github.com/user-attachments/assets/cf526fe7-ad23-4b7b-8c78-1d0361777de6" />
-3. PUT
-<img width="1219" height="633" alt="image" src="https://github.com/user-attachments/assets/64c994e0-f108-45a9-9d17-74c2780b52be" />
-4. DELETE
-<img width="1223" height="495" alt="image" src="https://github.com/user-attachments/assets/543111eb-7815-48bd-a20f-38319b1855dd" />
-6. POST (Registro)
-<img width="1225" height="539" alt="image" src="https://github.com/user-attachments/assets/f1fbb659-027b-4ab4-98cf-c0e85a706144" />
+## Mi paleta de colores
+
+### Tema Claro
+* `--color-bg` (`#CDEDF6`): Fondo principal claro y suave para que la interfaz se sienta ligera.
+* `--color-text` (`#042A2B`): Color de texto oscuro para buena legibilidad.
+* `--color-primary` (`#5EB1BF`): Color principal de la app.
+* `--color-card-bg` (`#f0f0f0`): Fondo de las tarjetas para separarlas del resto.
+* `--color-accent` (`#EF7B45`): Color de énfasis para acciones importantes.
+* `--color-accent-dark` (`#D84727`): Variante más fuerte para acciones como archivar.
+
+### Tema Oscuro
+* `--color-bg` (`#042A2B`): Fondo principal oscuro para ambientes con poca luz.
+* `--color-text` (`#CDEDF6`): Texto claro para mantener contraste y lectura cómoda.
+* `--color-primary` (`#5EB1BF`): Se mantiene igual.
+* `--color-card-bg` (`#0b3d3e`): Fondo más claro que el fondo general para dar profundidad.
+* `--color-accent` (`#EF7B45`): Color de énfasis que resalta sobre el fondo oscuro.
+* `--color-accent-dark` (`#ff935c`): Variante más fuerte para acciones como archivar.
