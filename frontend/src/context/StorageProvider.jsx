@@ -21,6 +21,15 @@ export function StorageProvider({ children }) {
         if (modo === 'api') {
             try {
                 const response = await fetch(API_URL);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const contentType = response.headers.get('content-type') || '';
+                if (!contentType.includes('application/json')) {
+                    throw new Error('La respuesta no es JSON valido');
+                }
+
                 const data = await response.json();
                 setitemsDatos(data);
                 return data;

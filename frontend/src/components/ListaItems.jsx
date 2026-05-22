@@ -1,9 +1,11 @@
+import { StorageContext } from '../context/StorageProvider';
 import { ItemCard } from './ItemCard';
+import { useContext } from 'react';
 
-export function ListaItems({ items, archivar, cambiarEstado }) {
-    const juegosListados = items.filter(item => item.activo === true);
+export function ListaItems() {
+    const { itemsDatos } = useContext(StorageContext);
 
-    if (juegosListados.length === 0) {
+    if (itemsDatos.length === 0) {
         return (
             <div>
                 <p>El backlog está vacío.</p>
@@ -13,13 +15,11 @@ export function ListaItems({ items, archivar, cambiarEstado }) {
 
     return (
         <div>
-            <h2>Mis Juegos ({juegosListados.length})</h2>
-            {juegosListados.map((juego) => (
+            <h2>Mis Juegos ({itemsDatos.length})</h2>
+            {itemsDatos.map((juego) => (
                 <ItemCard
                     key={juego.id}
                     juego={juego}
-                    archivar={archivar}
-                    cambiarEstado={cambiarEstado}
                 />
             ))}
         </div>

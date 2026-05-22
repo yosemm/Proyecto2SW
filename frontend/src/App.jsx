@@ -1,67 +1,31 @@
-import { useState, useEffect } from 'react'
+import { useContext } from 'react';
+import { StorageContext } from './context/StorageProvider';
+import { ThemeContext } from './context/ThemeContext';
 import { FormularioItem } from './components/FormularioItem';
-import { ListaItems } from './components/ListaItems'
+import { ListaItems } from './components/ListaItems';
 
 function App() {
-  const [items, setItems] = useState(
-    () => JSON.parse(localStorage.getItem('items') || '[]')
-  );
-
-  useEffect(() => {
-    localStorage.setItem('items', JSON.stringify(items));
-  }, [items]);
-
-  const agregarJuego = (datos) => {
-    const nuevoJuego = {
-      id: crypto.randomUUID(),
-      nombre: datos.nombre,
-      categoriaId: datos.categoriaId,
-      estado: datos.estado,
-      puntuacion: datos.puntuacion,
-      fechaRegistro: new Date().toISOString(),
-      fechaActividad: new Date().toISOString(),
-      notas: datos.notas,
-      atributos: {},
-      activo: true
-    };
-
-    setItems(prevItems => [nuevoJuego, ...prevItems]);
-  }
-
-  const archivarJuego = (id) => {
-    const itemsActuales = items.map(item => {
-      if (item.id === id) {
-        return { ...item, activo: false, fechaActividad: new Date().toISOString() };
-      }
-      return item;
-    });
-    setItems(itemsActuales);
-  };
-
-  const cambiarEstado = (id) => {
-    const estados = ['Pendiente', 'Jugando', 'Completado'];
-    const itemsActuales = items.map(item => {
-      if (item.id === id) {
-        const estadoActual = item.estado;
-        const siguiente = (estados.indexOf(estadoActual) + 1) % estados.length;
-        return { ...item, estado: estados[siguiente], fechaActividad: new Date().toISOString() };
-      }
-      return item;
-    });
-    setItems(itemsActuales);
-  }
+  const { modo, cambiarModo } = useContext(StorageContext);
+  const { tema, cambiarTema } = useContext(ThemeContext);
 
   return (
-    <>
-      <div className="contenido">
-        <h1>Backlog de Videojuegos</h1>
-        <span>Total de juegos: {items.length}</span>
-        <FormularioItem agregarJuego={agregarJuego} />
+    <div>
+      <h1>Backlog de Videojuegos</h1>
 
-        <ListaItems items={items} archivar={archivarJuego} cambiarEstado={cambiarEstado} />
+      <div>
+        <button onClick={cambiarTema}>
+          Tema: <strong>{tema.toUpperCase()}</strong>
+        </button>
+
+        <button onClick={() => cambiarModo(modo === 'local' ? 'api' : 'local')}>
+          Base de Datos: <strong>{modo.toUpperCase()}</strong>
+        </button>
       </div>
-    </>
-  )
+
+      <FormularioItem />
+      <ListaItems />
+    </div>
+  );
 }
 
-export default App
+export default App;

@@ -1,10 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState, useRef, useEffect } from 'react';
+import { StorageContext } from '../context/StorageProvider';
+import { CATEGORIAS } from '../utils/categorias';
 
-export function FormularioItem({ agregarJuego }) {
+export function FormularioItem() {
+    const inputNombreRef = useRef(null);
+
+    const { guardarItem } = useContext(StorageContext);
 
     const [datos, setDatos] = useState({
         nombre: '',
-        categoriaId: '',
+        categoriaId: CATEGORIAS[0].id,
         estado: '',
         puntuacion: '',
         notas: ''
@@ -18,9 +23,35 @@ export function FormularioItem({ agregarJuego }) {
         });
     };
 
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.ctrlKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                inputNombreRef.current?.focus(); // 
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
+
     const submitInput = (e) => {
         e.preventDefault();
-        agregarJuego(datos);
+
+        const nuevoJuego = {
+            id: crypto.randomUUID(),
+            nombre: datos.nombre,
+            categoriaId: datos.categoriaId,
+            estado: datos.estado,
+            puntuacion: datos.puntuacion ? Number(datos.puntuacion) : null,
+            fechaRegistro: new Date().toISOString(),
+            fechaActividad: new Date().toISOString(),
+            notas: datos.notas,
+            atributos: {},
+            activo: 1
+        };
+
+        guardarItem(nuevoJuego);
         setDatos({
             nombre: '',
             categoriaId: '',
@@ -28,6 +59,9 @@ export function FormularioItem({ agregarJuego }) {
             puntuacion: '',
             notas: ''
         });
+
+        inputNombreRef.current?.focus();
+
     };
 
     return (
