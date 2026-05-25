@@ -9,7 +9,7 @@ export function ItemCard({ juego }) {
         cat.nombre.toLowerCase() === juego.categoriaId?.toLowerCase()
     ) || { emoji: '🎮', color: 'var(--color-text)' };
 
-    const alternarEstado = () => {
+    const cambiarEstado = () => {
         const ordenEstados = ['pendiente', 'jugando', 'completado'];
         const siguienteIndice = (ordenEstados.indexOf(juego.estado) + 1) % ordenEstados.length;
 

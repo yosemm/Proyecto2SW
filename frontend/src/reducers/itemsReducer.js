@@ -7,62 +7,62 @@ export const estadoInicial = {
     busqueda: ''
 };
 
-export function itemsReducer(state, action) {
+export function itemsReducer(estado, accion) {
 
-    switch (action.type) {
+    switch (accion.type) {
 
         case 'HIDRATAR':
             return {
-                ...state,
-                lista: action.payload.items || [],
-                registros: action.payload.registros || []
+                ...estado,
+                lista: accion.payload.items || [],
+                registros: accion.payload.registros || []
             };
 
         case 'AGREGAR':
             return {
-                ...state,
-                lista: [action.payload, ...state.lista]
+                ...estado,
+                lista: [accion.payload, ...estado.lista]
             };
 
         case 'ELIMINAR':
             return {
-                ...state,
-                lista: state.lista.map(item =>
-                    item.id === action.payload.id ? { ...item, activo: 0, fechaActividad: action.payload.fecha } : item
+                ...estado,
+                lista: estado.lista.map(item =>
+                    item.id === accion.payload.id ? { ...item, activo: 0, fechaActividad: accion.payload.fecha } : item
                 )
             };
 
         case 'CAMBIAR_ESTADO':
             return {
-                ...state,
-                lista: state.lista.map(item =>
-                    item.id === action.payload.id
-                        ? { ...item, estado: action.payload.nuevoEstado, fechaActividad: action.payload.fecha }
+                ...estado,
+                lista: estado.lista.map(item =>
+                    item.id === accion.payload.id
+                        ? { ...item, estado: accion.payload.nuevoEstado, fechaActividad: accion.payload.fecha }
                         : item
                 )
             };
 
         case 'FILTRAR_CATEGORIA':
             return {
-                ...state,
-                filtroCategoria: action.payload
+                ...estado,
+                filtroCategoria: accion.payload
             };
 
         case 'FILTRAR_ESTADO':
             return {
-                ...state,
-                filtroEstado: action.payload
+                ...estado,
+                filtroEstado: accion.payload
             };
 
         case 'SET_BUSQUEDA':
             return {
-                ...state,
-                busqueda: action.payload
+                ...estado,
+                busqueda: accion.payload
             };
 
         case 'LIMPIAR_FILTROS':
             return {
-                ...state,
+                ...estado,
                 filtroCategoria: 'todas',
                 filtroEstado: 'todos',
                 busqueda: ''
@@ -70,11 +70,11 @@ export function itemsReducer(state, action) {
 
         case 'REGISTRAR_ACTIVIDAD':
             return {
-                ...state,
-                registros: [action.payload, ...state.registros]
+                ...estado,
+                registros: [accion.payload, ...estado.registros]
             };
 
         default:
-            return state;
+            return estado;
     }
 }

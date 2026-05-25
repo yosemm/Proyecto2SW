@@ -3,6 +3,7 @@ import { StorageContext } from './context/StorageProvider';
 import { ThemeContext } from './context/ThemeContext';
 import { FormularioItem } from './components/FormularioItem';
 import { ListaItems } from './components/ListaItems';
+import { BarraFiltros } from './components/BarraFiltros';
 
 function App() {
   const { modo, cambiarModo } = useContext(StorageContext);
@@ -36,6 +37,9 @@ function App() {
       </div>
 
       <FormularioItem />
+      <hr></hr>
+      <BarraFiltros />
+      <hr></hr>
       <ListaItems />
     </div>
   );

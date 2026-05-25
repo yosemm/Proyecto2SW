@@ -85,9 +85,11 @@ export function FormularioItem() {
                     <label>Categoría: </label>
                     <select name="categoriaId" value={datos.categoriaId} onChange={valorInput} required>
                         <option value="">Seleccione una categoría</option>
-                        <option value="RPG">RPG</option>
-                        <option value="Acción">Acción</option>
-                        <option value="Estrategia">Estrategia</option>
+                        {CATEGORIAS.map((categoria) => (
+                            <option key={categoria.id} value={categoria.id}>
+                                {categoria.emoji} {categoria.nombre}
+                            </option>
+                        ))}
                     </select>
                 </div>
 
