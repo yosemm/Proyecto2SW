@@ -13,7 +13,7 @@ export function BarraFiltros() {
                     type="text"
                     value={estadoDatos.busqueda}
                     onChange={(e) => setitemsDatos({ type: 'SET_BUSQUEDA', payload: e.target.value })}
-                    placeholder="Nombre del videojuego..."
+                    placeholder="Nombre del juego"
                 />
             </div>
 

@@ -1,12 +1,13 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useCallback } from 'react';
 import { StorageContext } from './context/StorageProvider';
 import { ThemeContext } from './context/ThemeContext';
 import { FormularioItem } from './components/FormularioItem';
 import { ListaItems } from './components/ListaItems';
 import { BarraFiltros } from './components/BarraFiltros';
+import { PanelGraficas } from './components/PanelGraficas';
 
 function App() {
-  const { modo, cambiarModo } = useContext(StorageContext);
+  const { modo, cambiarModo, guardarItem, eliminarItem } = useContext(StorageContext);
   const { tema, cambiarTema } = useContext(ThemeContext);
 
   useEffect(() => {
@@ -21,6 +22,21 @@ function App() {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [cambiarTema]);
+
+  const handleAlternarEstado = useCallback((juego) => {
+    const ordenEstados = ['pendiente', 'jugando', 'completado'];
+    const siguienteIndice = (ordenEstados.indexOf(juego.estado) + 1) % ordenEstados.length;
+
+    guardarItem({
+      ...juego,
+      estado: ordenEstados[siguienteIndice],
+      fechaActividad: new Date().toISOString()
+    });
+  }, [guardarItem]);
+
+  const handleEliminar = useCallback((id) => {
+    eliminarItem(id);
+  }, [eliminarItem]);
 
   return (
     <div>
@@ -41,6 +57,7 @@ function App() {
       <BarraFiltros />
       <hr></hr>
       <ListaItems />
+      <PanelGraficas />
     </div>
   );
 }

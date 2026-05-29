@@ -1,5 +1,5 @@
 import { StorageContext } from '../context/StorageProvider';
-import { ItemCard } from './ItemCard';
+import ItemCard from './ItemCard';
 import { useContext, useRef, useEffect } from 'react';
 
 export function ListaItems() {

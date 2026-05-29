@@ -1,8 +1,10 @@
 import { useContext } from 'react';
 import { StorageContext } from '../context/StorageProvider';
 import { CATEGORIAS } from '../utils/categorias';
+import React from 'react';
 
 export function ItemCard({ juego }) {
+    const { guardarItem, eliminarItem } = useContext(StorageContext);
 
     const infoCategoria = CATEGORIAS.find(cat =>
         cat.id.toLowerCase() === juego.categoriaId?.toLowerCase() ||
@@ -39,7 +41,7 @@ export function ItemCard({ juego }) {
                     Cambiar Estado
                 </button>
                 <button
-                    onClick={() => archivar(juego.id)}
+                    onClick={() => eliminarItem(juego.id)}
                 >
                     Archivar
                 </button>
@@ -47,3 +49,4 @@ export function ItemCard({ juego }) {
         </div>
     );
 }
+export default React.memo(ItemCard);
