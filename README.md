@@ -4,7 +4,12 @@ El propósito de esta aplicación es poder gestionar tu biblioteca de juegos y o
 
 *   **URL Demo en Vercel (Frontend):** https://proyecto2swdeploy.vercel.app/
 *   **URL Pública en Render (Backend):** https://proyecto2sw.onrender.com
-(la ruta que se utiliza para obtener los juegos es /api/items) 
+(la ruta que se utiliza para obtener los juegos es /api/items)
+
+*NOTA IMPORTANTE:* Estaba utilizando SQLite siguiendo las instrucciones del documento. Para aplicar a la bota nota donde se mencionó que había que realizar un deploy completo, moví todo de SQLite hacia PostgreSQL. Entonces mi backend en Render recibe la URL de una instancia de PostgreSQL que creé también en Render.com. Coloqué los cambios que le hice al backend en la rama [Backend-Version-Postgres](https://github.com/yosemm/Proyecto2SW/tree/Backend-Version-Postgres) y a esa rama le di deploy en Render. 
+
+<img width="350" alt="Evidencia de PostgreSQL" src="https://github.com/user-attachments/assets/a7c1a222-802e-4898-a309-b3f06675d941" />
+
 ## Capturas de Pantalla de la Aplicación
 
 ### Interfaz en Modo Claro
