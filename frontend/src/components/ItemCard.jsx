@@ -37,12 +37,13 @@ export function ItemCard({ juego }) {
             <div className="item-card-botones">
                 <button
                     onClick={() => cambiarEstado(juego.id)}
+                    className="boton-cambiar"
                 >
                     Cambiar Estado
                 </button>
                 <button
                     onClick={() => eliminarItem(juego.id)}
-                >
+                    className="boton-archivar">
                     Archivar
                 </button>
             </div>

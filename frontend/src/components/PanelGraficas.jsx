@@ -8,7 +8,6 @@ import {
     PieChart, Pie, Cell,
     LineChart, Line, ResponsiveContainer
 } from 'recharts';
-import './PanelGraficas.css';
 
 export function PanelGraficas() {
     const { itemsDatos = [] } = useContext(StorageContext) ?? {};
