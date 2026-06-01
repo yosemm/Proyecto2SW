@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { StorageContext } from '../context/StorageProvider';
+import { StorageContext } from '../context/StorageContext';
 import { CATEGORIAS } from '../utils/categorias';
 
 export function BarraFiltros() {

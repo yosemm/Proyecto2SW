@@ -6,11 +6,16 @@ import router from './routes/items.js';
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173'
-}));
+const origenesPermitidos = [
+    process.env.FRONTEND_URL,
+    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null,
+    'http://localhost:5173'
+].filter(Boolean);
 
+app.use(cors({ origin: origenesPermitidos }));
 app.use(express.json());
+
+app.use('/api/items', router);
 
 async function startServer() {
     try {
@@ -23,7 +28,5 @@ async function startServer() {
         console.error('Error al iniciar el servidor:', error);
     }
 }
-
-app.use('/api/items', router);
 
 startServer();

@@ -1,21 +1,17 @@
-import { useContext, useState, useRef, useEffect } from 'react';
-import { StorageContext } from '../context/StorageProvider';
+import { useCallback, useContext, useState, useRef } from 'react';
+import { StorageContext } from '../context/StorageContext';
 import { CATEGORIAS } from '../utils/categorias';
+import { useAtajoTeclado } from '../hooks/useAtajoTeclado';
 
 export function FormularioItem() {
     const inputNombreRef = useRef(null);
 
-    useEffect(() => {
-        const handleKeyDown = (e) => {
-            if ((e.ctrlKey || e.altKey) && e.key.toLowerCase() === 'n') {
-                e.preventDefault();
-                inputNombreRef.current?.focus();
-            }
-        };
-
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
+    const enfocarNombre = useCallback(() => {
+        inputNombreRef.current?.focus();
     }, []);
+
+    useAtajoTeclado('n', enfocarNombre, { requiereCtrl: true });
+    useAtajoTeclado('n', enfocarNombre, { requiereAlt: true });
 
     const { guardarItem } = useContext(StorageContext);
 
@@ -82,9 +78,9 @@ export function FormularioItem() {
                 </div>
 
                 <div>
-                    <label>Categoría: </label>
+                    <label>Categoria: </label>
                     <select name="categoriaId" value={datos.categoriaId} onChange={valorInput} required>
-                        <option value="">Seleccione una categoría</option>
+                        <option value="">Seleccione una categoria</option>
                         {CATEGORIAS.map((categoria) => (
                             <option key={categoria.id} value={categoria.id}>
                                 {categoria.emoji} {categoria.nombre}
@@ -103,7 +99,7 @@ export function FormularioItem() {
                 </div>
 
                 <div>
-                    <label>Puntuación (0-10): </label>
+                    <label>Puntuacion (0-10): </label>
                     <input
                         type="number"
                         name="puntuacion"

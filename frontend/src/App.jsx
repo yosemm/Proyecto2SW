@@ -1,42 +1,17 @@
-import { useContext, useEffect, useCallback } from 'react';
-import { StorageContext } from './context/StorageProvider';
-import { ThemeContext } from './context/ThemeContext';
+import { useContext } from 'react';
+import { StorageContext } from './context/StorageContext';
+import { ThemeContext } from './context/ThemeContextValue';
 import { FormularioItem } from './components/FormularioItem';
 import { ListaItems } from './components/ListaItems';
 import { BarraFiltros } from './components/BarraFiltros';
 import { PanelGraficas } from './components/PanelGraficas';
+import { useAtajoTeclado } from './hooks/useAtajoTeclado';
 
 function App() {
-  const { modo, cambiarModo, guardarItem, eliminarItem } = useContext(StorageContext);
+  const { modo, cambiarModo } = useContext(StorageContext);
   const { tema, cambiarTema } = useContext(ThemeContext);
 
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      const enInput = e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT';
-
-      if (e.key.toLowerCase() === 't' && !enInput) {
-        cambiarTema();
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [cambiarTema]);
-
-  const handleAlternarEstado = useCallback((juego) => {
-    const ordenEstados = ['pendiente', 'jugando', 'completado'];
-    const siguienteIndice = (ordenEstados.indexOf(juego.estado) + 1) % ordenEstados.length;
-
-    guardarItem({
-      ...juego,
-      estado: ordenEstados[siguienteIndice],
-      fechaActividad: new Date().toISOString()
-    });
-  }, [guardarItem]);
-
-  const handleEliminar = useCallback((id) => {
-    eliminarItem(id);
-  }, [eliminarItem]);
+  useAtajoTeclado('t', cambiarTema);
 
   return (
     <div>

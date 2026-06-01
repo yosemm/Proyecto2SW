@@ -1,4 +1,4 @@
-import { StorageContext } from '../context/StorageProvider';
+import { StorageContext } from '../context/StorageContext';
 import ItemCard from './ItemCard';
 import { useContext, useRef, useEffect } from 'react';
 

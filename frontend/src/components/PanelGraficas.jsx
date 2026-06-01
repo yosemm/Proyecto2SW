@@ -1,6 +1,8 @@
 import { useContext, useMemo } from 'react';
-import { StorageContext } from '../context/StorageProvider';
+import { StorageContext } from '../context/StorageContext';
 import { CATEGORIAS } from '../utils/categorias';
+import { obtenerCategoriaId } from '../utils/normalizarCategoria';
+import { useEstadoDelJuego } from '../hooks/useEstadoDelJuego';
 import {
     BarChart, Bar, XAxis, YAxis, Tooltip, Legend,
     PieChart, Pie, Cell,
@@ -10,9 +12,9 @@ import './PanelGraficas.css';
 
 export function PanelGraficas() {
     const { itemsDatos = [] } = useContext(StorageContext) ?? {};
-    const items = Array.isArray(itemsDatos) ? itemsDatos : [];
+    const items = useMemo(() => Array.isArray(itemsDatos) ? itemsDatos : [], [itemsDatos]);
+    const { pendientes, jugando, completados } = useEstadoDelJuego(items);
 
-    // Grafica 1: Actividad en últimos 7 días
     const datosActividad = useMemo(() => {
         const dias = {};
         for (let i = 6; i >= 0; i--) {
@@ -37,13 +39,12 @@ export function PanelGraficas() {
         }));
     }, [items]);
 
-    // Grafica 2: Distribución por categoría
     const datosCategorias = useMemo(() => {
         const conteo = {};
         CATEGORIAS.forEach(cat => { conteo[cat.id] = 0; });
 
         items.forEach(item => {
-            const catId = item.categoriaId?.toLowerCase();
+            const catId = obtenerCategoriaId(item.categoriaId ?? item.categoria);
             if (conteo[catId] !== undefined) {
                 conteo[catId]++;
             }
@@ -56,33 +57,22 @@ export function PanelGraficas() {
         })).filter(data => data.value > 0);
     }, [items]);
 
-    // Grafica 3: Distribución por estado de juego
     const datosEstados = useMemo(() => {
-        const estados = { pendiente: 0, jugando: 0, completado: 0 };
-
-        items.forEach(item => {
-            const est = item.estado?.toLowerCase();
-            if (estados[est] !== undefined) {
-                estados[est]++;
-            }
-        });
-
         return [
-            { name: 'Pendientes', cantidad: estados.pendiente, color: '#e2e8f0' },
-            { name: 'Jugando', cantidad: estados.jugando, color: '#bfdbfe' },
-            { name: 'Completados', cantidad: estados.completado, color: '#bbf7d0' }
+            { name: 'Pendientes', cantidad: pendientes, color: '#e2e8f0' },
+            { name: 'Jugando', cantidad: jugando, color: '#bfdbfe' },
+            { name: 'Completados', cantidad: completados, color: '#bbf7d0' }
         ];
-    }, [items]);
+    }, [pendientes, jugando, completados]);
 
     if (items.length === 0) return null;
 
     return (
         <div className="panel-graficas-container">
-            <h2>Panel de Analíticas</h2>
+            <h2>Panel de Analiticas</h2>
 
-            {/* Grafica 1: Actividad de los últimos 7 días */}
             <div className="grafica-card">
-                <h3>Actividad en los Últimos 7 Días</h3>
+                <h3>Actividad en los Ultimos 7 Dias</h3>
                 <ResponsiveContainer width="100%" height={250}>
                     <BarChart data={datosActividad}>
                         <XAxis dataKey="fecha" />
@@ -94,9 +84,8 @@ export function PanelGraficas() {
                 </ResponsiveContainer>
             </div>
 
-            {/* Grafica 2: Distribución por categorías */}
             <div className="grafica-card">
-                <h3>Distribución por Categorías</h3>
+                <h3>Distribución por Categoría</h3>
                 <ResponsiveContainer width="100%" height={250}>
                     <PieChart>
                         <Pie
@@ -118,7 +107,6 @@ export function PanelGraficas() {
                 </ResponsiveContainer>
             </div>
 
-            {/* Grafica 3: Estado del backlog */}
             <div className="grafica-card">
                 <h3>Estado Actual del Backlog</h3>
                 <ResponsiveContainer width="100%" height={250}>
