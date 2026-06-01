@@ -21,12 +21,14 @@ export function ListaItems() {
     return (
         <div>
             <h2>Mis Juegos ({itemsDatos.length})</h2>
-            {itemsDatos.map((juego) => (
-                <ItemCard
-                    key={juego.id}
-                    juego={juego}
-                />
-            ))}
+            <div className="item-card-contenedor">
+                {itemsDatos.map((juego) => (
+                    <ItemCard
+                        key={juego.id}
+                        juego={juego}
+                    />
+                ))}
+            </div>
         </div>
     );
 }

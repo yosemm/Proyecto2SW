@@ -14,7 +14,7 @@ function App() {
   useAtajoTeclado('t', cambiarTema);
 
   return (
-    <div>
+    <div className="app">
       <h1>Backlog de Videojuegos</h1>
 
       <div className="controles">

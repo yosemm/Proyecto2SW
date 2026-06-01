@@ -7,9 +7,9 @@ export function BarraFiltros() {
 
     return (
         <div className="formulario-item">
-            <h2>Buscar Juego</h2>
+            <h2 className="barra-filtros-h2">Buscar Juego</h2>
             <div className="barra-filtros">
-                <div className="filtro-field">
+                <div>
                     <label>Buscar: </label>
                     <input
                         type="text"
@@ -19,7 +19,7 @@ export function BarraFiltros() {
                     />
                 </div>
 
-                <div className="filtro-field">
+                <div>
                     <label>Categoría: </label>
                     <select
                         value={estadoDatos.filtroCategoria}
@@ -32,7 +32,7 @@ export function BarraFiltros() {
                     </select>
                 </div>
 
-                <div className="filtro-field">
+                <div>
                     <label>Estado: </label>
                     <select
                         value={estadoDatos.filtroEstado}

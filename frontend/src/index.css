@@ -3,7 +3,7 @@
 :root {
     --color-bg: #CDEDF6;
     --color-text: #042A2B;
-    --color-primary: #5EB1BF;
+    --color-primary: #3E7E89;
     --color-card-bg: #f0f0f0;
     --color-accent: #EF7B45;
     --color-accent-dark: #D84727;
@@ -19,6 +19,15 @@
     --categoria-estrategia: #3B82F6;
     --categoria-terror: #8B5CF6;
     --categoria-deportes: #10B981;
+
+    --bg-image: url('/images/lightmodeBG.jpg');
+    /* Obtuve estas imágenes de Unsplash buscando 'Gaming' */
+    --overlay-bg: color-mix(in srgb, var(--color-card-bg) 55%, transparent);
+    --overlay-border: color-mix(in srgb, var(--color-primary) 45%, transparent);
+    --overlay-shadow: color-mix(in srgb, var(--color-text) 18%, transparent);
+    --overlay-blur: 10px;
+
+    --bg-overlay: color-mix(in srgb, var(--color-bg) 75%, transparent);
 }
 
 body[data-theme='oscuro'] {
@@ -34,10 +43,24 @@ body[data-theme='oscuro'] {
     --categoria-estrategia: #60A5FA;
     --categoria-terror: #A78BFA;
     --categoria-deportes: #34D399;
+
+    --bg-image: url('/images/darkmodeBG.jpg');
+    --overlay-bg: color-mix(in srgb, var(--color-card-bg) 65%, transparent);
+    --overlay-border: color-mix(in srgb, var(--color-primary) 35%, transparent);
+    --overlay-shadow: color-mix(in srgb, var(--color-text) 30%, transparent);
+
+    --bg-overlay: color-mix(in srgb, var(--color-bg) 65%, transparent);
 }
 
 body {
-    background-color: var(--color-bg);
+    background:
+        linear-gradient(var(--bg-overlay), var(--bg-overlay)),
+        var(--bg-image);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
     color: var(--color-text);
     font-family: var(--font-family-base);
     font-size: var(--font-size-base);
@@ -45,14 +68,19 @@ body {
     margin: 0;
     display: flex;
     justify-content: center;
+    scrollbar-gutter: stable;
+    margin-bottom: 50px;
+
+}
+
+body>div {
+    width: min(90%, 980px);
+    box-sizing: border-box;
+    margin: 0 auto;
 }
 
 h1 {
     color: var(--color-primary);
-}
-
-h2 {
-    color: var(--color-accent);
 }
 
 h1,
@@ -64,12 +92,33 @@ h2 {
     line-height: 1.5;
 }
 
+.item-card-contenedor {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+}
+
 .item-card {
     background-color: var(--color-card-bg);
     border: 3px solid transparent;
     border-radius: 8px;
     padding: 16px;
     margin: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item-card-botones {
+    margin-top: auto;
+    display: flex;
+    gap: 12px;
+}
+
+.item-card-botones button {
+    flex: 1;
+    border-color: var(--color-text);
+    color: var(--color-text);
 }
 
 button {
@@ -79,6 +128,7 @@ button {
     margin: 0 8px;
     cursor: pointer;
     font-weight: var(--font-weight-medium);
+    background-color: transparent;
 }
 
 .controles {
@@ -103,7 +153,14 @@ button:hover {
     color: var(--color-primary);
 }
 
-form {
+.formulario-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form,
+.barra-filtros {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -113,20 +170,24 @@ form {
     width: 60%;
 }
 
-form>div {
+form>div,
+.barra-filtros>div {
     display: grid;
     grid-template-columns: 45% 50%;
     align-items: center;
     width: 100%;
 }
 
-form label {
+form label,
+.barra-filtros label {
     font-weight: var(--font-weight-medium);
     color: var(--color-text);
 }
 
 form input,
-form select {
+form select,
+.barra-filtros input,
+.barra-filtros select {
     padding: 5px;
     border: 2px solid var(--color-primary);
     margin: 5px 0;
@@ -141,78 +202,77 @@ form select {
 }
 
 form input:focus,
-form select:focus {
+form select:focus,
+.barra-filtros input:focus,
+.barra-filtros select:focus {
     outline: none;
     border-bottom-color: var(--color-accent);
 }
 
-form button {
-    width: 45%;
+form button,
+.barra-filtros button {
     margin-top: 10px;
     transition: all 0.3s ease;
+    background-color: transparent;
 }
 
-.formulario-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+form button {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+form button:hover {
+    background-color: var(--color-primary);
+    color: var(--color-card-bg);
+}
+
+.barra-filtros button {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.barra-filtros button:hover {
+    background-color: var(--color-accent);
+    color: var(--color-card-bg);
 }
 
 .barra-filtros {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border: 2px solid var(--color-accent);
-    border-radius: 8px;
-    padding: 20px;
-    width: 60%;
-    gap: 16px;
-}
-
-.filtro-field {
-    display: grid;
-    grid-template-columns: 45% 50%;
-    align-items: center;
-    width: 100%;
-    gap: 15px;
-}
-
-.barra-filtros label {
-    font-weight: var(--font-weight-medium);
-    color: var(--color-text);
+    border-color: var(--color-accent);
 }
 
 .barra-filtros input,
 .barra-filtros select {
-    padding: 5px;
-    border: 2px solid var(--color-accent);
-    margin: 5px 0;
-    border-radius: 10px;
-    background-color: transparent;
-    color: var(--color-text);
-    font-family: var(--font-family-base);
-    font-size: var(--font-size-base);
-    transition: border-color 0.3s ease;
-    width: 100%;
-    box-sizing: border-box;
+    border-color: var(--color-accent);
 }
 
 .barra-filtros input:focus,
 .barra-filtros select:focus {
-    outline: none;
-    border-color: var(--color-primary);
+    border-bottom-color: var(--color-accent-dark);
 }
 
-.barra-filtros button {
-    background-color: var(--color-accent);
-    color: var(--color-card-bg);
-    padding: 12px 24px;
-    margin-top: 10px;
-    width: 45%;
-}
-
+h1,
 h2 {
-    border-top: 2px solid var(--color-primary);
-    padding-top: 10px;
-    width: 100%;
+    color: var(--color-primary);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 2px color-mix(in srgb, var(--color-bg) 80%, transparent);
+}
+
+.barra-filtros-h2 {
+    border-top-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+#registrar {
+    color: var(--color-primary);
+}
+
+.item-card,
+.barra-filtros,
+.formulario-item form,
+.grafica-card {
+    background: var(--overlay-bg);
+    border-color: var(--overlay-border);
+    backdrop-filter: blur(var(--overlay-blur));
+    box-shadow: 0 3px 12px var(--overlay-shadow);
 }

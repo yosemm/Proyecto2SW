@@ -25,7 +25,7 @@ export function ItemCard({ juego }) {
 
     return (
         <div className="item-card" style={{ borderColor: infoCategoria.color }}>
-            <h3>{juego.nombre}</h3>
+            <h3 style={{ color: infoCategoria.color }}>{juego.nombre}</h3>
             <div>
                 <p><strong>Fecha en la que se registró:</strong> {juego.fechaRegistro}</p>
                 <p><strong>Categoría:</strong> {infoCategoria.emoji} {juego.categoriaId}</p>
@@ -34,7 +34,7 @@ export function ItemCard({ juego }) {
                 <p><strong>Notas:</strong> {juego.notas || 'Ninguna'}</p>
             </div>
 
-            <div>
+            <div className="item-card-botones">
                 <button
                     onClick={() => cambiarEstado(juego.id)}
                 >

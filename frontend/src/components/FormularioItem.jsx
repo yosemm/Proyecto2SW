@@ -62,7 +62,7 @@ export function FormularioItem() {
 
     return (
         <div className="formulario-item">
-            <h2>Registrar Nuevo Juego</h2>
+            <h2 id="registrar">Registrar Nuevo Juego</h2>
             <form onSubmit={submitInput}>
 
                 <div>
@@ -74,6 +74,7 @@ export function FormularioItem() {
                         value={datos.nombre}
                         onChange={valorInput}
                         required
+                        placeholder="Nombre del juego"
                     />
                 </div>
 
@@ -108,6 +109,7 @@ export function FormularioItem() {
                         value={datos.puntuacion}
                         onChange={valorInput}
                         required
+                        placeholder="¿Te ha gustado el juego? (0-10)"
                     />
                 </div>
 
@@ -119,6 +121,7 @@ export function FormularioItem() {
                         value={datos.notas}
                         onChange={valorInput}
                         required
+                        placeholder="Comentarios o detalles sobre el juego"
                     />
                 </div>
 
