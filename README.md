@@ -28,7 +28,7 @@ Hice un gráfico de líneas que muestra el Estado Actual del Backlog. El gráfic
 | **React** | Biblioteca para crear interfaz | v19.2.6 |
 | **Vite** | Herramienta para compilar el frontend | v8.0.12 |
 | **Express** | Framework para crear el servidor del backend HTTP | v5.2.1 |
-| **SQLite3** | Base de datos relacional ligera | v6.0.1 |
+| **PostgreSQL** | Base de datos relacional | v8.21.0 |
 | **Recharts** | Visualización de datos en SVG | v2.15.4 |
 | **Vercel** | Plataforma de hosting y deploy Frontend | Preset de Vite/Environment de Production/Tier de Hobby (Gratis) |
 | **Render** | Plataforma de hosting y deploy Backend | Free/0.1 CPU/512 MB |
@@ -44,7 +44,7 @@ git clone https://github.com/yosemm/Proyecto2SW.git
 cd Proyecto2SW
 ```
 
-### 2) Levantar el backend (Express + SQLite)
+### 2) Levantar el backend (Express + PostgreSQL)
 
 En una terminal, ejecuta los comandos para iniciar el servidor local:
 
@@ -56,7 +56,7 @@ node src/index.js
 
 Link del backend local: http://localhost:3000
 
-La base de datos SQLite se crea automáticamente al encenderse el servidor.
+Asegúrate de tener PostgreSQL instalado y configurado. La conexión a la base de datos se establece automáticamente al encenderse el servidor.
 
 ### 3) Levantar el frontend (React + Vite)
 
