@@ -61,7 +61,7 @@ export function FormularioItem() {
     };
 
     return (
-        <div>
+        <div className="formulario-item">
             <h2>Registrar Nuevo Juego</h2>
             <form onSubmit={submitInput}>
 

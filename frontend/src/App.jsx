@@ -17,7 +17,7 @@ function App() {
     <div>
       <h1>Backlog de Videojuegos</h1>
 
-      <div>
+      <div className="controles">
         <button onClick={cambiarTema}>
           Tema: <strong>{tema.toUpperCase()}</strong>
         </button>
@@ -28,9 +28,7 @@ function App() {
       </div>
 
       <FormularioItem />
-      <hr></hr>
       <BarraFiltros />
-      <hr></hr>
       <ListaItems />
       <PanelGraficas />
     </div>

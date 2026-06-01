@@ -1,25 +1,17 @@
-# Fase 3 - Proyecto Final de Sistemas Web
+# Backlog de Videojuegos
 
-En esta entrega se encuentra mi progreso para la Fase 3 del proyecto.
+Esta aplicación está pensada para poder gestionar tu catálogo de videojuegos y obtener gráficas acerca de tu libreria.
 
-## Rendimiento con React Profiler
+*   **URL Demo en Vercel (Frontend):** https://proyecto2swdeploy.vercel.app/
+*   **URL Pública en Render (Backend):** https://proyecto2sw.onrender.com
 
-Para comprobar las optimizaciones realicé dos pruebas grabando la actividad mientras escribía en la barra de búsqueda.
+## Capturas de Pantalla de la Aplicación
 
-### Captura ANTES de optimizar
-![screenshots/ProfilerAntesRanked.png](screenshots/ProfilerAntesRanked.png)
-El renderizado tardó 30.7ms.
+### Interfaz en Modo Claro
 
-### Captura DESPUÉS de optimizar
-Este es el resultado despues de envolver la lista filtrada y las funciones de callback:
-![screenshots/ProfilerDespuesRanked.png](screenshots/ProfilerDespuesRanked.png)
-El renderizado tardó a 28.3ms.
+### Interfaz en Modo Oscuro
 
-### Análisis de Rendimiento
-
-* **Componentes analizados:** BarraFiltros, ListaItems, ItemCard y PanelGraficas.
-* Al observar las capturas puedo observar que el tiempo de procesamiento está dominado por Recharts. 
-Sin embargo la optimización se nota en los datos globales del Profiler. En la prueba antes de la optimizacion, el renderizado tomó 30.7ms. Luego de utilizar useMemo en el filtro, los handlers con useCallback y envolver la tarjeta en React.memo, el tiempo total de renderizado bajó a 28.3ms.
+### Panel de Gráficas
 
 
 ## Mi Gráfica Original

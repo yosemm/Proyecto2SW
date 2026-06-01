@@ -69,7 +69,7 @@ export function PanelGraficas() {
 
     return (
         <div className="panel-graficas-container">
-            <h2>Panel de Analiticas</h2>
+            <h2>Estadísticas</h2>
 
             <div className="grafica-card">
                 <h3>Actividad en los Ultimos 7 Dias</h3>
