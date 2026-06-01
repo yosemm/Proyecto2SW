@@ -4,7 +4,7 @@ El propósito de esta aplicación es poder gestionar tu biblioteca de juegos y o
 
 *   **URL Demo en Vercel (Frontend):** https://proyecto2swdeploy.vercel.app/
 *   **URL Pública en Render (Backend):** https://proyecto2sw.onrender.com
-
+(la ruta que se utiliza para obtener los juegos es /api/items) 
 ## Capturas de Pantalla de la Aplicación
 
 ### Interfaz en Modo Claro
@@ -30,7 +30,7 @@ Hice un gráfico de líneas que muestra el Estado Actual del Backlog. El gráfic
 | **Express** | Framework para crear el servidor del backend HTTP | v5.2.1 |
 | **SQLite3** | Base de datos relacional ligera | v6.0.1 |
 | **Recharts** | Visualización de datos en SVG | v2.15.4 |
-| **Vercel** | Plataforma de hosting y deploy Frontend | Production |
+| **Vercel** | Plataforma de hosting y deploy Frontend | Preset de Vite/Environment de Production/Tier de Hobby (Gratis) |
 | **Render** | Plataforma de hosting y deploy Backend | Free/0.1 CPU/512 MB |
 
 ## Cómo Correr el Proyecto
@@ -93,7 +93,7 @@ VITE_API_URL=http://localhost:3000
 
 Para validar el funcionamiento de la inserción de datos, se agregaron los siguientes juegos:
 
-### Control (2019)
+#### 1. Control (2019)
 
 - **Categoría:** 💥 Acción
 - **Estado:** Completado
@@ -101,7 +101,7 @@ Para validar el funcionamiento de la inserción de datos, se agregaron los sigui
 
 Me encanta la arquitectura brutalista del juego y el ambiente en general.
 
-### League of Legends
+#### 2. League of Legends
 
 - **Categoría:** 🧩 Estrategia
 - **Estado:** Jugando
@@ -109,7 +109,7 @@ Me encanta la arquitectura brutalista del juego y el ambiente en general.
 
 Muy adictivo, pero destruye mi salud mental.
 
-### Resident Evil Village
+#### 3. Resident Evil Village
 
 - **Categoría:** 👻 Terror
 - **Estado:** Completado
@@ -198,7 +198,7 @@ Para evaluar el comportamiento de la aplicación se utilizó React Profiler mien
 
 Al revisar las métricas se observó que los componentes de Recharts representan la mayor parte del tiempo de renderizado debido a la generación de SVG para las gráficas.
 
-Antes de estas optimizaciones, el tiempo total de renderizado fue aproximadamente de **30.7 ms**. Después de utilizar `React.memo` y `useCallback`, el tiempo disminuyó a aproximadamente **28.3 ms**.
+Antes de estas optimizaciones, el tiempo total de renderizado fue de **30.7 ms**. Después de utilizar `React.memo` y `useCallback`, el tiempo disminuyó a **28.3 ms**.
 
 Aunque la diferencia no es extremadamente grande, se redujó el trabajo realizado durante cada actualización del estado.
 
@@ -223,7 +223,9 @@ Todos los hooks fueron documentados utilizando JSDoc dentro del directorio `src/
 
 **Carnet:** 22213
 
-**Curso:** Sistemas Web | **Sección:** 30 | **Semestre:** Primer Semestre 2026
+| Curso        | Sección | Semestre             |
+| ------------ | ------- | -------------------- |
+| Sistemas Web | 30      | Primer Semestre 2026 |
 
 **Reflexión:**
 
